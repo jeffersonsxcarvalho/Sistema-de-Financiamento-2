@@ -45,6 +45,12 @@ public class FinanciamentoVeiculosService {
         	throw new IllegalArgumentException("Idade inválida. É necessário ter no mínimo 18 anos.");
         } 
         
+        double entradaMinima = ((FinanciamentoDeVeiculos) financiamentoVeiculos).calcularEntradaMinima();
+        if(financiamentoVeiculos.getEntrada() < entradaMinima) {
+            throw new IllegalArgumentException(String.format(
+                "Entrada insuficiente. A entrada mínima exigida é R$ %.2f.", entradaMinima));
+        }
+        
         double valorParcela = financiamentoVeiculos.calcularValorParcela();
         double limite = cliente.getRendaMensal() * 0.20;
         if(valorParcela > limite) {
@@ -54,6 +60,7 @@ public class FinanciamentoVeiculosService {
         if(financiamentoVeiculos.getNumeroDeParcelas() > 60) {
         	throw new IllegalArgumentException("Número de parcelas excede o limite máximo de 60 meses.");
         }
+        
     }
 	
 	public List<FinanciamentoDeVeiculos> getListVeiculos(){

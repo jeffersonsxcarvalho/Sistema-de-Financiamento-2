@@ -43,14 +43,7 @@ public abstract class Financiamento {
 	}
 	
 	public void setEntrada(double entrada) {
-		if(entrada < calcularEntradaMinima()) {
-			throw new IllegalArgumentException(String.format("Entrada não pode ser inferior a 10%% do valor do veículo (mínimo R$ %.2f).", calcularEntradaMinima()));
-		} 
 		this.entrada = entrada;
-		}
-	
-	public double calcularEntradaMinima() {
-		return  valorDoBem * 0.10;
 	}
 	
 	public abstract double calcularValorParcela();

@@ -1,8 +1,8 @@
 package model;
 
-public class FinanciamentoDeVeiculos extends Financiamento{
+public class FinanciamentoDeImoveis extends Financiamento{
 
-	public FinanciamentoDeVeiculos(Cliente cliente, double valorDoBem, int numeroDeParcelas, double entrada) {
+	public FinanciamentoDeImoveis(Cliente cliente, double valorDoBem, int numeroDeParcelas, double entrada) {
 		super(cliente, valorDoBem, numeroDeParcelas, entrada);
 	}
 
@@ -11,12 +11,12 @@ public class FinanciamentoDeVeiculos extends Financiamento{
 	}
 	
 	public double calcularEntradaMinima() {
-		return getValorDoBem() * 0.10;
+		return getValorDoBem() * 0.20;
 	}
 
 	@Override
 	public double calcularValorParcela() {
-	    double taxaJuros = 0.0115; 
+	    double taxaJuros = 0.0067; 
 	    double fator = 1 - Math.pow(1 + taxaJuros, -numeroDeParcelas);
 	    return calcularValorDoFinanciamento() * taxaJuros / fator;
 	}
@@ -27,7 +27,7 @@ public class FinanciamentoDeVeiculos extends Financiamento{
 		return String.format("Financiamento aprovado!\nEntrada miníma: R$ %.2f\n"
 				+ "Valor Financiado: R$ %.2f\nNúmero de parcelas: %d\n"
 				+ "Valor da parcela: R$ %.2f", calcularEntradaMinima(), calcularValorDoFinanciamento(), 
-				numeroDeParcelas, calcularValorParcela());
+				getNumeroDeParcelas(), calcularValorParcela());
 	}
 	
 	public String toStringListagem() {
@@ -37,3 +37,4 @@ public class FinanciamentoDeVeiculos extends Financiamento{
 	
 	
 }
+

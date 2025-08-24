@@ -4,6 +4,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import service.ClienteService;
+import service.FinanciamentoImoveisService;
 import service.FinanciamentoVeiculosService;
 
 public class Main {
@@ -13,7 +14,9 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		
 		ClienteService clienteService = new ClienteService();
+		FinanciamentoImoveisService financiamentoImoveisService = new FinanciamentoImoveisService();
 		FinanciamentoVeiculosService financiamentoVeiculosService = new FinanciamentoVeiculosService();
+		
 		
 		int opcao;
 		do {
@@ -30,16 +33,28 @@ public class Main {
 			switch(opcao) {
 			
 			case 1:
-				
+				Cliente cliente = clienteService.solicitarDadosDosClientes(sc);
+				FinanciamentoDeImoveis financiamentoImoveis = financiamentoImoveisService.solicitarDadosFinanciamentoImoveis(cliente, sc);
+				break;
 				
 			case 2:
-				Cliente cliente = clienteService.solicitarDadosDosClientes(sc);
+				cliente = clienteService.solicitarDadosDosClientes(sc);
 				FinanciamentoDeVeiculos financiamentoVeiculo = financiamentoVeiculosService.solicitarDadosFinanciamentoVeiculos(cliente, sc);
 				break;
 				
 			case 3: 
+				System.out.println("===Lista de Financiamento de Imóveis===");
+				for(FinanciamentoDeImoveis f : financiamentoImoveisService.getListImoveis()) {
+					System.out.println(f.toStringListagem());
+				}
+				break;
 				
 			case 4:
+				System.out.println("===Lista de Financiamento de Veículos===");
+				for(FinanciamentoDeVeiculos v : financiamentoVeiculosService.getListVeiculos()) {
+					System.out.println(v.toStringListagem());
+				}
+				break;
 				
 			case 0:
 				System.out.println("Saindo..");
