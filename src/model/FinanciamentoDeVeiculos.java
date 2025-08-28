@@ -31,8 +31,8 @@ public class FinanciamentoDeVeiculos extends Financiamento{
 	}
 	
 	public String toStringListagem() {
-		return String.format("Nome: %s | Idade: %d | Renda Mensal: R$ %.2f | Valor Financiamento: R$ %.2f | Número de parcelas: %d | Entrada: R$ %.2f | Valor da parcela: R$ %.2f\n",
-				cliente.getNome(), cliente.getIdade(), cliente.getRendaMensal(), calcularValorDoFinanciamento(), getNumeroDeParcelas(), getEntrada(), calcularValorParcela());
+		return String.format("Status: %s | Nome: %s | Idade: %d | Renda Mensal: R$ %.2f | Valor Financiamento: R$ %.2f | Número de parcelas: %d | Entrada: R$ %.2f | Valor da parcela: R$ %.2f\n",
+				this.status, cliente.getNome(), cliente.getIdade(), cliente.getRendaMensal(), calcularValorDoFinanciamento(), getNumeroDeParcelas(), getEntrada(), calcularValorParcela());
 	}
 	
 	
